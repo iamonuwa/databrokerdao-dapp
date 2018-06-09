@@ -3654,7 +3654,7 @@ svg.md-icon {
 html {
   height: 100%;
   font-size: 16px;
-  background-color: #F8F8F8; }
+  background-color: #f8f8f8; }
 
 body {
   margin: 0;
@@ -3702,7 +3702,7 @@ span.clickable {
   padding-top: 7px;
   padding-bottom: 9px;
   border-radius: 5px; }
-  .md-btn[role=checkbox] {
+  .md-btn[role='checkbox'] {
     padding-top: 9px; }
 
 .md-selection-control-label {
@@ -3735,3 +3735,9 @@ pre {
 
 .md-dialog-content--padded {
   padding: 0; }
+
+/* Pagination on datasets table */
+.md-table-pagination--controls {
+  position: relative !important;
+  float: right;
+  margin-left: 0 !important; }

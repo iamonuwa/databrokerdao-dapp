@@ -12,29 +12,23 @@ import { withRouter } from 'react-router-dom';
 
 class NearbyStreamsTable extends Component {
   onViewStreamDetails(key) {
-    this.props.history.push(`/stream-details/${key}`);
+    this.props.history.push(`/stream/${key}`);
   }
 
-  render(){
-    if(this.props.fetchingNearbyStreams)
-      return(
-        <p>Loading...</p>
-      );
+  render() {
+    if (this.props.fetchingNearbyStreams) return <p>Loading...</p>;
 
-    if(this.props.streams.length === 0)
-      return(
-        <p>No nearby streams</p>
-      );
+    if (this.props.streams.length === 0) return <p>No nearby streams</p>;
 
     const LeftTableColumn = styled(TableColumn)`
-      padding-left:0 !important;
+      padding-left: 0 !important;
     `;
 
     const StyledTableRow = styled(TableRow)`
       cursor: pointer;
     `;
 
-    return(
+    return (
       <DataTable baseId="streams-nearby-table" plain>
         <TableHeader>
           <TableRow>
@@ -44,11 +38,18 @@ class NearbyStreamsTable extends Component {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {this.props.streams.map((stream) => (
-            <StyledTableRow key={stream.key} onClick={() => this.onViewStreamDetails(stream.key)}>
+          {this.props.streams.map(stream => (
+            <StyledTableRow
+              key={stream.key}
+              onClick={() => this.onViewStreamDetails(stream.key)}
+            >
               <LeftTableColumn>{stream.name}</LeftTableColumn>
               <TableColumn>{stream.type}</TableColumn>
-              <TableColumn>{stream.updateinterval === 86400000?"daily":`${stream.updateinterval/1000}''`}</TableColumn>
+              <TableColumn>
+                {stream.updateinterval === 86400000
+                  ? 'daily'
+                  : `${stream.updateinterval / 1000}''`}
+              </TableColumn>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -63,4 +64,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, null)(withRouter(NearbyStreamsTable))
+export default connect(mapStateToProps, null)(withRouter(NearbyStreamsTable));

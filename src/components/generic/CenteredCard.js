@@ -9,13 +9,13 @@ export default class CenteredCard extends Component {
       max-width: 900px;
       margin-bottom: 24px;
 
-      &:first-of-type{
+      &:first-of-type {
         margin-top: 100px;
       }
     `;
 
-    return(
-      <StyledCard style={this.props.style} className='md-block-centered'>
+    return (
+      <StyledCard style={this.props.style} className="md-block-centered">
         {this.props.children}
       </StyledCard>
     );

@@ -12,25 +12,25 @@ $mobileBreakpoint: 480px;
 
 @include react-md-everything;
 
-.no-padding-top{
-  padding-top:0 !important;
+.no-padding-top {
+  padding-top: 0 !important;
 }
 
-.no-padding-bottom{
+.no-padding-bottom {
   padding-bottom: 0 !important;
 }
 
 html {
   height: 100%;
   font-size: 16px;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 }
 
 body {
   margin: 0;
   padding: 0;
   height: 100%;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 #root {
@@ -39,7 +39,7 @@ body {
 
 h1 {
   font-weight: 600;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0, 0, 0, 0.7);
   font-family: 'Titillium Web', sans-serif;
   line-height: 1.5;
   font-size: 34px;
@@ -53,25 +53,25 @@ h1 {
 h2 {
   font-family: 'Titillium Web', sans-serif;
   font-weight: 600;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 p {
-  color: rgba(0,0,0,0.7);
+  color: rgba(0, 0, 0, 0.7);
   font-size: 16px;
   line-height: 1.65;
 }
 
-li{
+li {
   color: rgba(0, 0, 0, 0.7);
   font-size: 13px;
 }
 
-a{
+a {
   color: rgba(0, 0, 0, 0.7);
 }
 
-span.clickable{
+span.clickable {
   cursor: pointer;
   text-decoration: underline;
 }
@@ -82,49 +82,57 @@ span.clickable{
   padding-bottom: 9px;
   border-radius: 5px;
 
-  &[role=checkbox]{
-    padding-top:9px;
+  &[role='checkbox'] {
+    padding-top: 9px;
   }
 }
 
-.md-selection-control-label{
+.md-selection-control-label {
   font-size: 16px;
 }
 
-.md-text-field{
+.md-text-field {
   font-size: 16px;
 }
 
-.md-table-column--header{
+.md-table-column--header {
   font-size: 16px;
 }
 
-pre{
-  margin:0;
+pre {
+  margin: 0;
 }
 
-.disabled-button{
+.disabled-button {
   background-color: gray !important;
-  &:hover{
+  &:hover {
     background-color: gray !important;
   }
 }
 
 /* md-cell margins add margin to input fields which is weird. If I want margin I'll ask it myself. */
-.md-cell{
+.md-cell {
   margin: 0 !important;
 }
 
 /* Dialog screens (purchase, staking explainer,...) */
 
-.md-dialog--centered{
+.md-dialog--centered {
   max-height: 75%;
 }
 
-.md-dialog-content{
-  overflow:visible;
+.md-dialog-content {
+  overflow: visible;
 }
 
-.md-dialog-content--padded{
+.md-dialog-content--padded {
   padding: 0;
+}
+
+/* Pagination on datasets table */
+
+.md-table-pagination--controls {
+  position: relative !important;
+  float: right;
+  margin-left: 0 !important;
 }

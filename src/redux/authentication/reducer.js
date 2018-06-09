@@ -62,7 +62,8 @@ async function getJWTToken(axiosClient, encryptedPrivateKey) {
   return tokenResponse.data.token;
 }
 
-export function register(values, { props, setErrors }) { //setSubmitting
+export function register(values, { props, setErrors }) {
+  //setSubmitting
   return async (dispatch, getState) => {
     const axiosClient = axios();
     try {
@@ -95,7 +96,7 @@ export function register(values, { props, setErrors }) { //setSubmitting
       // GET THE JWT TOKEN
       const token = await getJWTToken(axiosClient, encryptedPrivateKey);
 
-      localStorage.setItem('email',values.email);
+      localStorage.setItem('email', values.email);
 
       dispatch({
         type: TOKEN_RECEIVED,
@@ -113,8 +114,7 @@ export function register(values, { props, setErrors }) { //setSubmitting
       //   payload: { roles: roleResponse.data.roles }
       // });
 
-      if(props.callBack)
-        props.callBack();
+      if (props.callBack) props.callBack();
     } catch (error) {
       //console.log(error);
       setErrors({
@@ -153,7 +153,7 @@ export function login(values, { props, setSubmitting, setErrors }) {
         type: TOKEN_RECEIVED,
         payload: { token, address }
       });
-      localStorage.setItem('email',values.email);
+      localStorage.setItem('email', values.email);
 
       // GET THE ROLES OF THE USER
       const authenticatedAxiosClient = axios(token);

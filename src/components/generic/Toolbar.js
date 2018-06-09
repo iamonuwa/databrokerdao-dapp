@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import propTypes from 'prop-types'
+import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -13,9 +13,9 @@ import LoginDialog from '../authentication/LoginDialog';
 class Toolbar extends Component {
   static propTypes = {
     showTabs: propTypes.bool
-  }
+  };
 
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -23,20 +23,24 @@ class Toolbar extends Component {
     };
   }
 
-  toggleLogin(){
-    this.setState({LoginVisible: !this.state.LoginVisible});
+  toggleLogin() {
+    this.setState({ LoginVisible: !this.state.LoginVisible });
   }
 
-  goToDiscoverScreen(){
-    this.props.history.push('/discover');
+  goToStreamsScreen() {
+    this.props.history.push('/streams');
   }
 
   render() {
     const StyledToolbar = styled.div`
-      background: linear-gradient(to right, ${props => props.theme.dbdaoPink} 10%, ${props => props.theme.dbdaoPurple} 100%);
+      background: linear-gradient(
+        to right,
+        ${props => props.theme.dbdaoPink} 10%,
+        ${props => props.theme.dbdaoPurple} 100%
+      );
       width: 100%;
       padding: 12px 25px;
-      box-shadow: 0 1px 11px rgba(0,0,0,0.5);
+      box-shadow: 0 1px 11px rgba(0, 0, 0, 0.5);
       position: fixed;
       z-index: 100;
       top: 0;
@@ -111,36 +115,41 @@ class Toolbar extends Component {
       color: white;
       font-weight: 600;
       font-size: 18px;
-      cursor:pointer;
+      cursor: pointer;
       font-family: 'Titillium Web', sans-serif;
     `;
 
     return (
       <div>
-        <StyledToolbar >
+        <StyledToolbar>
           <StyledLogoContainer>
-            <StyledLogo src={Logo} alt="SettleMint" onClick={() => this.goToDiscoverScreen()}/>
-            <StyledLogoMobile src={LogoMobile} alt="SettleMint" onClick={() => this.goToDiscoverScreen()}/>
+            <StyledLogo
+              src={Logo}
+              alt="SettleMint"
+              onClick={() => this.goToStreamsScreen()}
+            />
+            <StyledLogoMobile
+              src={LogoMobile}
+              alt="SettleMint"
+              onClick={() => this.goToStreamsScreen()}
+            />
           </StyledLogoContainer>
-          <TabsContainer>
-          {this.props.showTabs &&
-            <Tabs />
-          }
-          </TabsContainer>
+          <TabsContainer>{this.props.showTabs && <Tabs />}</TabsContainer>
           <StyledWalletLinkContainer>
-            {this.props.token &&
-              <StyledWalletLink to="/wallet">
-                Wallet
-              </StyledWalletLink>
-            }
-            {!this.props.token &&
+            {this.props.token && (
+              <StyledWalletLink to="/wallet">Wallet</StyledWalletLink>
+            )}
+            {!this.props.token && (
               <StyledLoginSpan onClick={event => this.toggleLogin()}>
                 Log In
               </StyledLoginSpan>
-            }
+            )}
           </StyledWalletLinkContainer>
         </StyledToolbar>
-        <LoginDialog visible={this.state.LoginVisible && !this.props.token} hideEventHandler={() => this.toggleLogin()} />
+        <LoginDialog
+          visible={this.state.LoginVisible && !this.props.token}
+          hideEventHandler={() => this.toggleLogin()}
+        />
       </div>
     );
   }
@@ -150,4 +159,4 @@ const mapStateToProps = state => ({
   token: state.auth.token
 });
 
-export default connect(mapStateToProps, null)(withRouter(Toolbar))
+export default connect(mapStateToProps, null)(withRouter(Toolbar));

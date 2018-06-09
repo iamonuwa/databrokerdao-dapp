@@ -9,6 +9,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import createStore from './redux/create-store';
 import Mixpanel from 'mixpanel-browser';
 import { ThemeProvider } from 'styled-components';
+import BigNumber from 'bignumber.js';
 
 import Loadermanager from './utils/Loadermanager';
 import './styles/index.css';
@@ -32,11 +33,18 @@ const UnsubscribedScreen = Loadermanager(() => import('./components/unsubscribed
 
 WebFontLoader.load({
   google: {
-    families: ['Open Sans:300,400,500,700', 'Titillium Web:300,400,600,700,900', 'Material Icons']
+    families: [
+      'Open Sans:300,400,500,700',
+      'Titillium Web:300,400,600,700,900',
+      'Material Icons'
+    ]
   }
 });
 
-Mixpanel.init("544eb1c36a2ccbf02c7661d8b7525d81");
+Mixpanel.init('544eb1c36a2ccbf02c7661d8b7525d81');
+
+// Config bigbumber globally so it will display all numbers with enough decimals. We don't want any scientific notations!
+BigNumber.config({ EXPONENTIAL_AT: 256 });
 
 // ========================================================
 // Store Instantiation
@@ -56,14 +64,31 @@ const render = () => {
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <Switch>
-            <Route path="/account" component={withRouter(userIsNotAuthenticatedRedir(AuthContainer))} />
-            <Route path="/discover" component={withRouter(DiscoverScreen)} />
+            <Route
+              path="/account"
+              component={withRouter(userIsNotAuthenticatedRedir(AuthContainer))}
+            />
+            <Route path="/streams" component={withRouter(StreamsScreen)} />
             <Route path="/purchases" component={withRouter(PurchasesScreen)} />
             <Route path="/listings" component={withRouter(ListingsScreen)} />
             <Route path="/enlist" component={withRouter(EnlistScreen)} />
-            <Route path="/wallet" component={withRouter(userIsAuthenticatedRedir(WalletScreen))} />
-            <Route path="/stream-details/:key" component={withRouter(StreamDetailsScreen)} />
-            <Route path="/unsubscribed" component={withRouter(UnsubscribedScreen)} />
+            <Route path="/datasets" component={withRouter(DatasetsScreen)} />
+            <Route
+              path="/wallet"
+              component={withRouter(userIsAuthenticatedRedir(WalletScreen))}
+            />
+            <Route
+              path="/stream/:key"
+              component={withRouter(StreamDetailsScreen)}
+            />
+            <Route
+              path="/dataset/:key"
+              component={withRouter(DatasetsDetailsScreen)}
+            />
+            <Route
+              path="/unsubscribed"
+              component={withRouter(UnsubscribedScreen)}
+            />
             <Route path="/" component={LandingScreen} />
           </Switch>
         </ConnectedRouter>
